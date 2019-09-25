@@ -1,0 +1,52 @@
+{
+  "name": "next-compression",
+  "version": "0.0.0",
+  "description": "NextJS and Express plugin to compress assets",
+  "main": "index.js",
+  "files": [
+    "express-compression.js",
+    "next-webpack-compression.js"
+  ],
+  "author": "Rita Oliveira <ana.oliveira@moxy.studio>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:moxystudio/next-compression-plugin.git"
+  },
+  "keywords": [
+    "next",
+    "nextjs",
+    "express",
+    "compression",
+    "plugin"
+  ],
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "prerelease": "npm t && npm run lint",
+    "release": "standard-version"
+  },
+  "peerDependencies": {
+    "next": ">=8.0.0 <=9.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "eslint": "^6.3.0",
+    "eslint-config-moxy": "^7.1.0",
+    "husky": "^3.0.3",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.1",
+    "standard-version": "^7.0.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-static-gzip": "^2.0.5",
+    "path": "^0.12.7",
+    "compression-webpack-plugin": "^3.0.0",
+    "mime-db": "^1.41.0",
+    "webpack": "^4.39.3",
+    "zlib": "^1.0.5"
+  }
+}
