@@ -5,7 +5,7 @@ Next.js plugin to compress static assets at build time and serve them instead of
 ## Installation
 
 ```sh
-$ npm i --save next-compression-plugin
+$ npm i --save @moxy/next-compression
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ $ npm i --save next-compression-plugin
 Setup the plugin in the `next.config.js` file.
 
 ```js
-const { withCompression } = require('next-compression-plugin');
+const { withCompression } = require('@moxy/next-compression');
 
 module.exports = withCompression({ ...nextConfig });
 ```
@@ -29,7 +29,7 @@ This package uses the [express-static-gzip](https://www.npmjs.com/package/expres
 ```js
 // server.js
 
-const { compressionPlugin } = require('next-compression-plugin');
+const { compressionPlugin } = require('@moxy/next-compression');
 
 // ....
 
