@@ -1,6 +1,6 @@
 {
   "name": "next-compression",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "NextJS and Express plugin to compress assets",
   "main": "index.js",
   "files": [
