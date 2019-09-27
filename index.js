@@ -1,4 +1,5 @@
-/* eslint-disable prefer-import/prefer-import-over-require */
+'use strict';
+
 const compressionPlugin = require('./express-compression');
 const withCompression = require('./next-webpack-compression');
 
