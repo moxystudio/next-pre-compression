@@ -1,6 +1,20 @@
 # next-compression
 
-Next.js plugin to compress static assets at build time and serve them instead of having to compress them on-the-fly.
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
+
+[npm-url]:https://npmjs.org/package/@moxy/next-compression
+[downloads-image]:https://img.shields.io/npm/dm/@moxy/next-compression.svg
+[npm-image]:https://img.shields.io/npm/v/@moxy/next-compression.svg
+[travis-url]:https://travis-ci.org/moxystudio/next-compression
+[travis-image]:http://img.shields.io/travis/moxystudio/next-compression/master.svg
+[codecov-url]:https://codecov.io/gh/moxystudio/next-compression
+[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/next-compression/master.svg
+[david-dm-url]:https://david-dm.org/moxystudio/next-compression
+[david-dm-image]:https://img.shields.io/david/moxystudio/next-compression.svg
+[david-dm-dev-url]:https://david-dm.org/moxystudio/next-compression?type=dev
+[david-dm-dev-image]:https://img.shields.io/david/dev/moxystudio/next-compression.svg
+
+Next.js plugin to compress static assets at build time and serve them instead of having to compress on-the-fly.
 
 ## Installation
 
@@ -12,7 +26,7 @@ $ npm i --save @moxy/next-compression
 
 ### next.config.js
 
-Setup the plugin in the `next.config.js` file.
+Setup the plugin in the `next.config.js` file:
 
 ```js
 const { withCompression } = require('@moxy/next-compression');
@@ -22,21 +36,21 @@ module.exports = withCompression({ ...nextConfig });
 
 ### Express
 
-Express middleware used to serve the previously compressed files. You need to setup a custom express server, please follow the official Next.js example: https://github.com/zeit/next.js/tree/master/examples/custom-server-express.
+Express middleware used to serve the previously compressed files, by leveraging [express-static-gzip](https://www.npmjs.com/package/express-static-gzip).
 
-This package uses the [express-static-gzip](https://www.npmjs.com/package/express-static-gzip).
+First, you need to setup a [custom express server]( https://github.com/zeit/next.js/tree/master/examples/custom-server-express). Then, simply add the middleware like so:
 
 ```js
 // server.js
 
-const { compressionPlugin } = require('@moxy/next-compression');
+const { compressionMiddleware } = require('@moxy/next-compression');
 
 // ....
 
 app.prepare().then(() => {
     const server = express();
 
-    server.use(compressionPlugin({
+    server.use(compressionMiddleware({
         requestPath: '/',
         fsPath: '/directory/static'
         serveStatic: {
@@ -81,7 +95,7 @@ $ npm test
 $ npm test -- --watch # during development
 ```
 
-`$ npm test` will generate by default a **coverage** folder with test coverage info.
+After running the tests, a **coverage** folder will be created containing the test coverage info.
 
 ## License
 

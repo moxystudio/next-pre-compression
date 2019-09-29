@@ -1,7 +1,7 @@
 {
   "name": "@moxy/next-compression",
   "version": "1.0.1",
-  "description": "NextJS and Express plugin to compress assets",
+  "description": "Next.js plugin to compress static assets at build time and serve them instead of having to compress on-the-fly",
   "main": "index.js",
   "files": [
     "express-compression.js",
