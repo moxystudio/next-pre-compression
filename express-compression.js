@@ -18,7 +18,7 @@ const maybeRestoreUrlFromIndexHtmlToEmpty = (req, options) => {
     req.url = req.url.slice(0, -indexStr.length);
 };
 
-const compressionPlugin = (options) => {
+const compressionMiddleware = (options) => {
     options = {
         fsPath: '.next/static/',
         requestPath: '/_next/static/',
@@ -49,4 +49,4 @@ const compressionPlugin = (options) => {
     });
 };
 
-module.exports = compressionPlugin;
+module.exports = compressionMiddleware;
