@@ -4,7 +4,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const zlib = require('zlib');
 const mimeDb = require('mime-db');
 
-module.exports = (nextConfig = {}) => ({
+module.exports = () => (nextConfig = {}) => ({
     ...nextConfig,
     webpack(config, options) {
         const compressibleRegExps = Object
