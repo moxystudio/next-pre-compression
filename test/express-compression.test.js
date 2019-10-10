@@ -2,7 +2,7 @@
 
 const express = require('express');
 const request = require('supertest');
-const compressionMiddleware = require('../express-compression');
+const { compressionMiddleware } = require('../index');
 let server = express();
 
 beforeEach(() => {
