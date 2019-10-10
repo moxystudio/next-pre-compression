@@ -1,6 +1,6 @@
 'use strict';
 
-const withCompression = require('../index');
+const withCompression = require('../next-webpack-compression');
 const zlib = require('zlib');
 
 const zlibBrotliCompression = zlib.brotliCompress;
