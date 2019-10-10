@@ -1,6 +1,5 @@
 'use strict';
 
-const compressionMiddleware = require('./express-compression');
-const withCompression = require('./next-webpack-compression');
+const compression = module.exports = require('./next-webpack-compression');
 
-module.exports = { withCompression, compressionMiddleware };
+compression.compressionMiddleware = require('./express-compression');
