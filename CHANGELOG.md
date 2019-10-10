@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/moxystudio/next-compression-plugin/compare/v1.0.2...v2.0.0) (2019-10-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* the way the next plugin is imported has changed
+
+### Bug Fixes
+
+* export defaults to plugin ([#6](https://github.com/moxystudio/next-compression-plugin/issues/6)) ([e6bafaf](https://github.com/moxystudio/next-compression-plugin/commit/e6bafaf))
+
 ### [1.0.2](https://github.com/moxystudio/next-compression-plugin/compare/v1.0.1...v1.0.2) (2019-09-30)
 
 
