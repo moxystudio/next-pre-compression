@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/moxystudio/next-compression-plugin/compare/v2.0.0...v2.0.1) (2019-10-10)
+
+
+### Bug Fixes
+
+* fix next peer dependency range ([0f69fc1](https://github.com/moxystudio/next-compression-plugin/commit/0f69fc1))
+
 ## [2.0.0](https://github.com/moxystudio/next-compression-plugin/compare/v1.0.2...v2.0.0) (2019-10-10)
 
 
