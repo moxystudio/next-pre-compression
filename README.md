@@ -29,7 +29,7 @@ $ npm i --save @moxy/next-compression
 Setup the plugin in the `next.config.js` file:
 
 ```js
-const { withCompression } = require('@moxy/next-compression');
+const withCompression = require('@moxy/next-compression');
 
 module.exports = withCompression({ ...nextConfig });
 ```
