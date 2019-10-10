@@ -27,7 +27,7 @@
     "release": "standard-version"
   },
   "peerDependencies": {
-    "next": ">=8.0.0 <=9.0.0"
+    "next": ">=8 <=9"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
