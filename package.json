@@ -24,7 +24,8 @@
     "test": "jest --coverage",
     "lint": "eslint .",
     "prerelease": "npm t && npm run lint",
-    "release": "standard-version"
+    "release": "standard-version",
+    "postrelease": "git push --follow-tags origin master && npm publish"
   },
   "peerDependencies": {
     "next": ">=8 <=9"
