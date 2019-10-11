@@ -37,7 +37,7 @@ it('should push compression settings to webpack config', () => {
     expect(config).toMatchSnapshot();
 });
 
-it('should return a function if nextConfig is a function', () => {
+it('should call nextConfig webpack if defined', () => {
     const result = withCompression(nextConfig).webpack(config, {});
 
     expect(nextConfig.webpack).toHaveBeenCalledTimes(1);
