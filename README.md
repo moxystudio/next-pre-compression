@@ -75,7 +75,7 @@ All options from [express-static-gzip options](https://www.npmjs.com/package/exp
 
 ```js
 {
-    fsPath: '`/.next/static/`',
+    fsPath: '/.next/static/',
     requestPath: '/_next/static/',
     orderPreference: ['br', 'gzip'],
     enableBrotli: true,
