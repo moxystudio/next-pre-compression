@@ -59,3 +59,8 @@ it('should not push brotli compression plugin if brotli compression is not avail
     expect(config).toMatchSnapshot();
 });
 
+it('should do nothing if compilation is associated to the server', () => {
+    withCompression().webpack(config, { isServer: true });
+
+    expect(config.plugins).toHaveLength(0);
+});
