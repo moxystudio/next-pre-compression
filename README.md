@@ -1,25 +1,25 @@
-# next-compression
+# next-pre-compression
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
 
-[npm-url]:https://npmjs.org/package/@moxy/next-compression
-[downloads-image]:https://img.shields.io/npm/dm/@moxy/next-compression.svg
-[npm-image]:https://img.shields.io/npm/v/@moxy/next-compression.svg
-[travis-url]:https://travis-ci.org/moxystudio/next-compression
-[travis-image]:http://img.shields.io/travis/moxystudio/next-compression/master.svg
-[codecov-url]:https://codecov.io/gh/moxystudio/next-compression
-[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/next-compression/master.svg
-[david-dm-url]:https://david-dm.org/moxystudio/next-compression
-[david-dm-image]:https://img.shields.io/david/moxystudio/next-compression.svg
-[david-dm-dev-url]:https://david-dm.org/moxystudio/next-compression?type=dev
-[david-dm-dev-image]:https://img.shields.io/david/dev/moxystudio/next-compression.svg
+[npm-url]:https://npmjs.org/package/@moxy/next-pre-compression
+[downloads-image]:https://img.shields.io/npm/dm/@moxy/next-pre-compression.svg
+[npm-image]:https://img.shields.io/npm/v/@moxy/next-pre-compression.svg
+[travis-url]:https://travis-ci.org/moxystudio/next-pre-compression
+[travis-image]:http://img.shields.io/travis/moxystudio/next-pre-compression/master.svg
+[codecov-url]:https://codecov.io/gh/moxystudio/next-pre-compression
+[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/next-pre-compression/master.svg
+[david-dm-url]:https://david-dm.org/moxystudio/next-pre-compression
+[david-dm-image]:https://img.shields.io/david/moxystudio/next-pre-compression.svg
+[david-dm-dev-url]:https://david-dm.org/moxystudio/next-pre-compression?type=dev
+[david-dm-dev-image]:https://img.shields.io/david/dev/moxystudio/next-pre-compression.svg
 
 Next.js plugin to compress static assets at build time and serve them instead of having to compress on-the-fly.
 
 ## Installation
 
 ```sh
-$ npm i --save @moxy/next-compression
+$ npm i --save @moxy/next-pre-compression
 ```
 
 ## Usage
@@ -29,9 +29,9 @@ $ npm i --save @moxy/next-compression
 Setup the plugin in the `next.config.js` file:
 
 ```js
-const withCompression = require('@moxy/next-compression');
+const withPreCompression = require('@moxy/next-pre-compression');
 
-module.exports = withCompression({ ...nextConfig });
+module.exports = withPreCompression({ ...nextConfig });
 ```
 
 This plugin will automatically disable itself if you disable [`compress`](https://nextjs.org/docs#compression) in your `next.config.js`.
@@ -45,46 +45,52 @@ First, you need to setup a [custom express server]( https://github.com/zeit/next
 ```js
 // server.js
 
-const { compressionMiddleware } = require('@moxy/next-compression');
-
-// ....
+const express = require('express');
+const next = require('next');
+const preCompression = require('@moxy/next-pre-compression/express-middleware');
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
     const server = express();
 
-    server.use(compressionMiddleware({
-        requestPath: '/',
-        fsPath: '/directory/static'
-        serveStatic: {
-            maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
-            immutable: true,
-        }
-    }));
-});
+    if (!dev) {
+        server.use(preCompression(app, {
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        }));
+    }
 
+    server.get('*', (req, res) => handle(req, res));
+
+    server.listen(port, host, (err) => {
+        if (err) { throw err; }
+
+        console.log(`> Ready on http://localhost:${port}`);
+    });
+})
+.catch((err) => {
+    setImmediate(() => { throw err; });
+});
 ```
+
+> ⚠️ You must not use the middleware in dev as it's not supported, see [tkoenig89/express-static-gzip#22](https://github.com/tkoenig89/express-static-gzip/issues/22).
+
+> ⚠️ A custom `assetPrefix` that references an absolute URI is not yet supported (e.g.: https://cdn.my-site.com), see [moxystudio/next-pre-compression#8](https://github.com/moxystudio/next-pre-compression/issues/8).
 
 #### Available options
 
-| Option | Description | Type | Default |
-|  ---   |     ---     | ---  |   ---   |
-| requestPath   | Defines the request path that will activate the `express-static-gzip` middleware  | string  | `/_next/static/` |
-| fsPath   | Defines the file system path from where the `express-static-gzip` middleware will serve the compressed files. | string  | `.next/static/` |
+All options from [serve-static](https://www.npmjs.com/package/serve-static) are also available.
 
-All options from [express-static-gzip options](https://www.npmjs.com/package/express-static-gzip#available-options) are also available.
+> ⚠️ You can't enable the `index` option as it's always set to false, due to a strange behavior of `express-static-gzip` that modifies the request path without restoring it, see: https://github.com/tkoenig89/express-static-gzip/blob/94767f79e861a3901e8ebba31b084abc4986817f/index.js#L28
 
 ##### Default options
 
 ```js
 {
-    fsPath: '/.next/static/',
-    requestPath: '/_next/static/',
-    orderPreference: ['br', 'gzip'],
-    enableBrotli: true,
-    serveStatic: {
-        maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
-        immutable: true,
-    }
+    maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
+    immutable: true,
+    index: false // Can't be changed
 }
 ```
 
