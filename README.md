@@ -34,6 +34,8 @@ const withCompression = require('@moxy/next-compression');
 module.exports = withCompression({ ...nextConfig });
 ```
 
+This plugin will automatically disable itself if you disable [`compress`](https://nextjs.org/docs#compression) in your `next.config.js`.
+
 ### Express
 
 Express middleware used to serve the previously compressed files, by leveraging [express-static-gzip](https://www.npmjs.com/package/express-static-gzip).

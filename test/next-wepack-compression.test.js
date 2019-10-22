@@ -6,7 +6,7 @@ const zlib = require('zlib');
 const zlibBrotliCompression = zlib.brotliCompress;
 
 const nextConfig = {
-    webpack: jest.fn(),
+    compress: true,
 };
 
 let config = {
@@ -14,8 +14,6 @@ let config = {
 };
 
 beforeEach(() => {
-    nextConfig.webpack.mockReset();
-
     config = {
         plugins: [],
     };
@@ -26,41 +24,44 @@ afterEach(() => {
 });
 
 it('should return the same config object that is passed', () => {
-    const result = withCompression().webpack(config, {});
+    const result = withCompression(nextConfig).webpack(config, {});
 
     expect(result).toBe(config);
 });
 
 it('should push compression settings to webpack config', () => {
-    withCompression().webpack(config, {});
+    withCompression(nextConfig).webpack(config, {});
 
     expect(config).toMatchSnapshot();
 });
 
+it('should do nothing if compilation is associated to the server', () => {
+    withCompression(nextConfig).webpack(config, { isServer: true });
+
+    expect(config.plugins).toHaveLength(0);
+});
+
+it('should do nothing if compress is disable in the next config', () => {
+    withCompression({ ...nextConfig, compress: false }).webpack(config);
+
+    expect(config.plugins).toHaveLength(0);
+});
+
 it('should call nextConfig webpack if defined', () => {
+    const nextConfig = {
+        webpack: jest.fn(() => 'foo'),
+    };
+
     const result = withCompression(nextConfig).webpack(config, {});
 
     expect(nextConfig.webpack).toHaveBeenCalledTimes(1);
     expect(nextConfig.webpack).toHaveReturnedWith(result);
 });
 
-it('should push the passed object to the config and call next function', () => {
-    const result = withCompression({ foo: 'bar' });
-
-    expect(result).toMatchObject({ foo: 'bar' });
-    expect(typeof result.webpack).toBe('function');
-});
-
 it('should not push brotli compression plugin if brotli compression is not available', () => {
     delete zlib.brotliCompress;
 
-    withCompression().webpack(config, {});
+    withCompression(nextConfig).webpack(config, {});
 
     expect(config).toMatchSnapshot();
-});
-
-it('should do nothing if compilation is associated to the server', () => {
-    withCompression().webpack(config, { isServer: true });
-
-    expect(config.plugins).toHaveLength(0);
 });
