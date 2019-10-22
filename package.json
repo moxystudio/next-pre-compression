@@ -1,17 +1,16 @@
 {
-  "name": "@moxy/next-compression",
+  "name": "@moxy/next-pre-compression",
   "version": "2.1.0",
   "description": "Next.js plugin to compress static assets at build time and serve them instead of having to compress on-the-fly",
   "main": "index.js",
   "files": [
-    "express-compression.js",
-    "next-webpack-compression.js"
+    "express-middleware.js"
   ],
   "author": "Rita Oliveira <ana.oliveira@moxy.studio>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:moxystudio/next-compression-plugin.git"
+    "url": "git@github.com:moxystudio/next-pre-compression-plugin.git"
   },
   "keywords": [
     "next",
