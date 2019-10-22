@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/moxystudio/next-pre-compression-plugin/compare/v2.1.0...v3.0.0) (2019-10-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* changed the name of the package
+* changed interface to pass next's app to middleware
+* changed options to only allow serve-static options
+
+* package usage ([6ca46c7](https://github.com/moxystudio/next-pre-compression-plugin/commit/6ca46c7))
+
 ## [2.1.0](https://github.com/moxystudio/next-pre-compression-plugin/compare/v2.0.2...v2.1.0) (2019-10-22)
 
 

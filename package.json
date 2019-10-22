@@ -1,6 +1,6 @@
 {
   "name": "@moxy/next-pre-compression",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Next.js plugin to compress static assets at build time and serve them instead of having to compress on-the-fly",
   "main": "index.js",
   "files": [
