@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:moxystudio/next-pre-compression-plugin.git"
+    "url": "git@github.com:moxystudio/next-pre-compression.git"
   },
   "keywords": [
     "next",
