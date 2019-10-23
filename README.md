@@ -90,6 +90,7 @@ All options from [serve-static](https://www.npmjs.com/package/serve-static) are 
 {
     maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
     immutable: true,
+    etag: false,
     index: false // Can't be changed
 }
 ```
