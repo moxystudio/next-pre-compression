@@ -103,6 +103,19 @@ it('should use throw an error if used in dev', () => {
     }).toThrow(/should only be called in production/);
 });
 
+it('should respond with the correct default headers', async () => {
+    const server = express();
+
+    server.use(preCompressionMiddleware(NEXT_APP));
+
+    await request(server)
+    .get(`${NEXT_STATIC_FOLDER}/test.txt`)
+    .expect('Cache-Control', 'public, max-age=31536000, immutable')
+    .expect((res) => {
+        expect(res.headers.etag).toBe(undefined);
+    });
+});
+
 it('should forward options to serve-static', async () => {
     const server = express();
 

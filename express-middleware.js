@@ -22,6 +22,7 @@ const preCompression = (app, options = {}) => {
     options = {
         maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
         immutable: true,
+        etag: false,
         ...options,
         index: false,
     };
