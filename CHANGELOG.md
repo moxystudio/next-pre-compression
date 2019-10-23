@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/moxystudio/next-pre-compression-plugin/compare/v3.0.0...v3.0.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* disable etag ([c0d5e28](https://github.com/moxystudio/next-pre-compression-plugin/commit/c0d5e28))
+
 ## [3.0.0](https://github.com/moxystudio/next-pre-compression-plugin/compare/v2.1.0...v3.0.0) (2019-10-22)
 
 
