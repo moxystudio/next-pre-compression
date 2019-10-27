@@ -36,6 +36,8 @@ module.exports = withPreCompression({ ...nextConfig });
 
 This plugin will automatically disable itself if you disable [`compress`](https://nextjs.org/docs#compression) in your `next.config.js`.
 
+> ℹ️ The middleware has no effect in development.
+
 ### Express
 
 Express middleware used to serve the previously compressed files, by leveraging [express-static-gzip](https://www.npmjs.com/package/express-static-gzip).
@@ -55,11 +57,9 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = express();
 
-    if (!dev) {
-        server.use(preCompression(app, {
-            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-        }));
-    }
+    server.use(preCompression(app, {
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    }));
 
     server.get('*', (req, res) => handle(req, res));
 
@@ -74,11 +74,9 @@ app.prepare().then(() => {
 });
 ```
 
-> ⚠️ You must not use the middleware in dev as it's not supported, see [tkoenig89/express-static-gzip#22](https://github.com/tkoenig89/express-static-gzip/issues/22).
+> ℹ️ The middleware has no effect in development.
 
 > ⚠️ A custom `assetPrefix` that references an absolute URI is not yet supported (e.g.: https://cdn.my-site.com), see [moxystudio/next-pre-compression#8](https://github.com/moxystudio/next-pre-compression/issues/8).
-
-#### Available options
 
 All options from [serve-static](https://www.npmjs.com/package/serve-static) are also available.
 

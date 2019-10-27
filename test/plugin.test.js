@@ -42,7 +42,7 @@ it('should do nothing if compilation is associated to the server', () => {
 });
 
 it('should do nothing if compress is disable in the next config', () => {
-    withPreCompression({ ...nextConfig, compress: false }).webpack(config);
+    withPreCompression({ ...nextConfig, compress: false }).webpack(config, {});
 
     expect(config.plugins).toHaveLength(0);
 });
