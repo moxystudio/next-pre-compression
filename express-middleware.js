@@ -9,8 +9,8 @@ const NEXT_STATIC_PATH = '/_next/static/';
 /**
  * Express middleware to serve pre-compressed files from filesystem.
  *
- * @param {Object} app - Next.js' application.
- * @param {Object} options - Options that will be passed to 'serve-static'.
+ * @param {object} app - Next.js' application.
+ * @param {object} options - Options that will be passed to 'serve-static'.
  * @returns {Function} The middleware function.
  */
 const preCompression = (app, options = {}) => {
