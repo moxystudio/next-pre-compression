@@ -16,6 +16,8 @@
 
 Next.js plugin to compress static assets at build time and serve them instead of having to compress on-the-fly.
 
+> ℹ️ While compressing ahead of time has benefits, it's preferrable to delegate compression to an upstream server, such as a reverse-proxy CDN. Modern CDNs apply compression with the best algorithms and settings, while storing the compressed responses on edge servers. By default, Next.js already does `gzip` by default which is sufficient for efficient transfer of data to the upstream servers. In conclusion, you should only use this package if there's no upstream server or if it doesn't apply compression.
+
 ## Installation
 
 ```sh
