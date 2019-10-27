@@ -38,7 +38,7 @@ module.exports = withPreCompression({ ...nextConfig });
 
 This plugin will automatically disable itself if you disable [`compress`](https://nextjs.org/docs#compression) in your `next.config.js`.
 
-> ℹ️ The middleware has no effect in development.
+> ℹ️ The plugin has no effect in development.
 
 ### Express
 
