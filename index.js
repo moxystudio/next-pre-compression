@@ -9,7 +9,7 @@ const mimeDb = require('mime-db');
 module.exports = (nextConfig = {}) => ({
     ...nextConfig,
     webpack(config, options) {
-        const enabled = nextConfig.compress && !options.isServer;
+        const enabled = nextConfig.compress && !options.isServer && !options.dev;
 
         if (enabled) {
             const compressibleRegExps = Object

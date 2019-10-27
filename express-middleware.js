@@ -4,19 +4,20 @@ const path = require('path');
 const expressStaticGzip = require('express-static-gzip');
 const { Router: createRouter } = require('express');
 
-const NEXT_STATIC_FOLDER = '/_next/static/';
+const NEXT_STATIC_PATH = '/_next/static/';
 
 /**
  * Express middleware to serve pre-compressed files from filesystem.
  *
  * @param {Object} app - Next.js' application.
  * @param {Object} options - Options that will be passed to 'serve-static'.
+ * @returns {Function} The middleware function.
  */
 const preCompression = (app, options = {}) => {
     const { nextConfig: { distDir, assetPrefix }, renderOpts } = app;
 
     if (renderOpts.dev) {
-        throw new Error('The @moxy/next-pre-compression\'s express middleware should only be called in production.');
+        return (req, res, next) => next();
     }
 
     options = {
@@ -39,8 +40,9 @@ const preCompression = (app, options = {}) => {
     }
 
     const router = createRouter();
+    const routePath = `${assetPrefix}${NEXT_STATIC_PATH}`;
 
-    return router.use(`${assetPrefix}${NEXT_STATIC_FOLDER}`, staticGzipMiddleware);
+    return router.use(routePath, staticGzipMiddleware);
 };
 
 module.exports = preCompression;
