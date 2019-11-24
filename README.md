@@ -6,7 +6,7 @@
 [downloads-image]:https://img.shields.io/npm/dm/@moxy/next-pre-compression.svg
 [npm-image]:https://img.shields.io/npm/v/@moxy/next-pre-compression.svg
 [travis-url]:https://travis-ci.org/moxystudio/next-pre-compression
-[travis-image]:http://img.shields.io/travis/moxystudio/next-pre-compression/master.svg
+[travis-image]:https://img.shields.io/travis/moxystudio/next-pre-compression/master.svg
 [codecov-url]:https://codecov.io/gh/moxystudio/next-pre-compression
 [codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/next-pre-compression/master.svg
 [david-dm-url]:https://david-dm.org/moxystudio/next-pre-compression
@@ -108,4 +108,4 @@ After running the tests, a **coverage** folder will be created containing the te
 
 ## License
 
-Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+Released under the [MIT License](https://www.opensource.org/licenses/mit-license.php).
