@@ -24,7 +24,7 @@
     "lint": "eslint .",
     "prerelease": "npm t && npm run lint",
     "release": "standard-version",
-    "postrelease": "git push --follow-tags origin master && npm publish"
+    "postrelease": "git push --follow-tags origin HEAD && npm publish"
   },
   "peerDependencies": {
     "next": ">=8 <=9"
